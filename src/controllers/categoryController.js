@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Category = require('../models/Category');
 
+//função de listagem de cateogorias
 exports.getAllCategories = async (req, res) => { 
   try {
     const categories =  await Category.find();
@@ -8,6 +9,8 @@ exports.getAllCategories = async (req, res) => {
   } catch (error) { 
     res.status(400).json({ error: error.message});
   }};
+
+// função para criação de categoria
 exports.createCategory = async (req, res) => { 
   const {name, description} = req.body;
 
@@ -20,10 +23,10 @@ exports.createCategory = async (req, res) => {
     res.status(400).json({ error: error.message});
   }};
 
-  
+//função de buscade categoria pelo id
 exports.getCategoriesById = async (req, res) => { 
   //n está funcionando
-  const id = req.params
+  const { id } = req.params
   try {
     const categories = await Category.findById(id).then((cats) => {
       res.status(200).json({cats})
@@ -33,6 +36,7 @@ exports.getCategoriesById = async (req, res) => {
     res.status(400).json({ error: error.message});
   }};
 
+//função de update de categoria
 exports.updateCategory = async (req, res) => {
   const {id} = req.params;
   const {name, description} = req.body;
@@ -50,6 +54,7 @@ exports.updateCategory = async (req, res) => {
     res.status(400).json({ error: error.message});
   }};
 
+// função de exclusão de categoria
 exports.deleteCategory = async (req, res) => {
   const {id} = req.params;
   try {
@@ -60,7 +65,7 @@ exports.deleteCategory = async (req, res) => {
     res.status(500).json({ error: error.message});
   }};
 
-
+// função de busca de todas as categorias com produtos
   exports.getCategoriesWithProducts = async (req, res) => {
     try {
       const categories = await Category.find();

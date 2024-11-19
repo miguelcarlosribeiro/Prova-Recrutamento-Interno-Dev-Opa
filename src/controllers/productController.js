@@ -1,7 +1,7 @@
 const Product = require('../models/Product');
 const Category = require("../models/Category");
 
-
+// função de listagem de produtos
 exports.getAllProducts = async (req, res) => { 
   try {
     const products = await Product.find().populate("categories", "name description");
@@ -10,6 +10,7 @@ exports.getAllProducts = async (req, res) => {
     res.status(400).json({ error: error.message});
   }};
 
+// função de criação de produto 
 exports.createProduct = async (req, res) => { 
   const {name, description, amount, price, categories} = req.body;
 
@@ -28,7 +29,8 @@ exports.createProduct = async (req, res) => {
     res.status(400).json({ error: error.message});
   }};
 
-  
+
+// função de busca de produto pelo id 
 exports.getProductById = async (req, res) => { 
   const { id } = req.params
   try {
@@ -39,6 +41,7 @@ exports.getProductById = async (req, res) => {
     res.status(400).json({ error: error.message});
   }};
 
+// função de update do produto 
 exports.updateProduct = async (req, res) => {
   const {id} = req.params;
   const { name, description, amount, price, categories } = req.body;
@@ -62,6 +65,7 @@ exports.updateProduct = async (req, res) => {
     res.status(400).json({ error: error.message});
   }};
 
+// função de exclusão do produto
 exports.deleteProduct = async (req, res) => {
   const {id} = req.params;
   try {
@@ -73,6 +77,7 @@ exports.deleteProduct = async (req, res) => {
   }};
 
 
+// função de busca de produtos pela categoria
   exports.getProductsByCategory = async (req, res) => {
     const { categoryId } = req.params;
     try {

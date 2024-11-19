@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 
+// middleware de validação token 
 module.exports = (req, res, next) => {
   const token = req.header('Authorization')
   if (!token) return res.status(401).json({ message: 'Acesso negado.' });
@@ -8,10 +9,10 @@ module.exports = (req, res, next) => {
     
     console.log(token);
     jwtToken = process.env.JWT_SECRET
-    console.log(jwtToken)
+    //console.log(jwtToken)
     
-  //  const decoded = jwt.verify(token, process.env.JWT_SECRET);
-  //  req.user = decoded;
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    req.user = decoded;
     next();
   } catch (error) {
     console.error(error);

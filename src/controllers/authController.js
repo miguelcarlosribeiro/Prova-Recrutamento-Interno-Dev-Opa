@@ -2,6 +2,7 @@ const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 
+//Metodo de criação do cliente
 exports.createUser = async (req, res) => { 
   const {username, password} = req.body;
 
@@ -14,7 +15,7 @@ exports.createUser = async (req, res) => {
   } catch (error) {
     res.status(400).json({ message:error.message});
   }};
-
+  //metodo de login
   exports.login = async (req, res) => {
   const {username, password} = req.body
   try {
