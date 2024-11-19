@@ -1,3 +1,4 @@
+const mongoose = require('mongoose');
 const Category = require('../models/Category');
 
 exports.getAllCategories = async (req, res) => { 
@@ -12,7 +13,7 @@ exports.createCategory = async (req, res) => {
 
   try {
     const category = new Category({name, description});
-    
+
     await category.save();
     res.status(200).json({ message: "Categoria criada com sucesso!", category });
   } catch (error) { 
@@ -21,11 +22,13 @@ exports.createCategory = async (req, res) => {
 
   
 exports.getCategoriesById = async (req, res) => { 
+  //n está funcionando
   const id = req.params
-  console.log(id);
   try {
-    const categories = await Category.findById(id);
-    res.status(200).json(categories);
+    const categories = await Category.findById(id).then((cats) => {
+      res.status(200).json({cats})
+    });
+    
   } catch (error) { 
     res.status(400).json({ error: error.message});
   }};
@@ -36,7 +39,7 @@ exports.updateCategory = async (req, res) => {
 
   try {
     const category = await Category.findByIdAndUpdate(
-      id,
+      {id: id},
       {name, description},
       {new: true}
       );

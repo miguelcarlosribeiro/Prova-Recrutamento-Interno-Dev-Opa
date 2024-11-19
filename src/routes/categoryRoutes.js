@@ -13,7 +13,7 @@ const {
 router.post('/', authMiddleware, createCategory);
 router.get('/', authMiddleware, getAllCategories);
 router.get('/:id', authMiddleware, getCategoriesById);
-router.post('/:id', authMiddleware, updateCategory);
+router.put('/:id', authMiddleware, updateCategory);
 router.get("/with-products", authMiddleware, getCategoriesWithProducts);
 
 module.exports = router;
