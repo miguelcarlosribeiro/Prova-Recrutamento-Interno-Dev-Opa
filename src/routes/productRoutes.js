@@ -11,9 +11,9 @@ const {
 
  
 router.post('/', authMiddleware, createProduct);
-router.post('/', authMiddleware, getAllProducts);
-router.post('/:id', authMiddleware, getProductById);
-router.post('/:id', authMiddleware, updateProduct);
+router.get('/', authMiddleware, getAllProducts);
+router.get('/:id', authMiddleware, getProductById);
+router.put('/:id', authMiddleware, updateProduct);
 router.get("/category/:categoryId", authMiddleware, getProductsByCategory);
 
 module.exports = router;

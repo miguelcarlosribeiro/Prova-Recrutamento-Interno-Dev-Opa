@@ -7,11 +7,9 @@ module.exports = (req, res, next) => {
 
   try {
     
-    console.log(token);
     jwtToken = process.env.JWT_SECRET
-    //console.log(jwtToken)
-    
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+    const decoded = jwt.verify(token, 'sua-chave-secreta');
     req.user = decoded;
     next();
   } catch (error) {

@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Category = require('../models/Category');
+const Product = require('../models/Product');
 
 //função de listagem de cateogorias
 exports.getAllCategories = async (req, res) => { 
@@ -43,7 +44,7 @@ exports.updateCategory = async (req, res) => {
 
   try {
     const category = await Category.findByIdAndUpdate(
-      {id: id},
+      id,
       {name, description},
       {new: true}
       );

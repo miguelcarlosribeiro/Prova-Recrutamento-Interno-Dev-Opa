@@ -24,7 +24,7 @@ exports.createUser = async (req, res) => {
     const isMatch = await bcrypt.compare(password, user.password);
 
     if(!isMatch) return res.status(400).json({ message: 'Username or password is incorrect' });
-    const token = jwt.sign({ id: user._id }, 'your_secret_key', { expiresIn: '1h' });
+    const token = jwt.sign({ id: user._id }, 'sua-chave-secreta', { expiresIn: '1h' });
     res.json({ token });
     } catch (error) {
     res.status(400).json({ message: error.message });

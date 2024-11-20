@@ -14,6 +14,6 @@ router.post('/', authMiddleware, createCategory);
 router.get('/', authMiddleware, getAllCategories);
 router.get('/:id', authMiddleware, getCategoriesById);
 router.put('/:id', authMiddleware, updateCategory);
-router.get("/with-products", authMiddleware, getCategoriesWithProducts);
+router.get('/with_products/products', authMiddleware, getCategoriesWithProducts);
 
 module.exports = router;
