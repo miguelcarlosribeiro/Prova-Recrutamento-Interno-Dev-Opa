@@ -5,7 +5,7 @@ Prova de recrutamento interno
   npm install
 
  configuração .env:
-  port=
+  port= 5000
   MONGO_URI=mongodb://localhost:27017/testeopa
   JWT_SECRET=sua-chave-secreta
 

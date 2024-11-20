@@ -8,8 +8,8 @@ module.exports = (req, res, next) => {
   try {
     
     jwtToken = process.env.JWT_SECRET
-
-    const decoded = jwt.verify(token, 'sua-chave-secreta');
+    console.log(jwtToken)
+    const decoded = jwt.verify(token, jwtToken);
     req.user = decoded;
     next();
   } catch (error) {
